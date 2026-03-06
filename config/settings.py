@@ -34,6 +34,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '.herokuapp.com'
     '127.0.0.1',
     'localhost',
     "recipe_project",
@@ -49,7 +50,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'crispy_forms',
+    'django_summernote',
     'recipe_project',
+    'recipes',
 ]
 
 MIDDLEWARE = [
