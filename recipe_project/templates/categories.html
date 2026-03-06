@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Recipe Categories</h1>
+
+<div class="category-list">
+
+{% for category in categories %}
+
+<div class="category-card">
+    <h3>{{ category.name }}</h3>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

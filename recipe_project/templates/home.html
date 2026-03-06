@@ -3,7 +3,7 @@
 {% block content %}
 
 <section class="hero">
-    <h1>Discover Delicious Recipes</h1>
+    <h1>Discover Delicious Recipes 🍽️</h1>
     <input type="text" id="search" placeholder="Search recipes...">
 </section>
 
@@ -16,11 +16,22 @@
 {% for recipe in recipes %}
 
 <div class="recipe-card">
-    <img src="{{ recipe.image.url }}">
+
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+    {% endif %}
+
     <h3>{{ recipe.title }}</h3>
+
     <p>{{ recipe.description|truncatewords:10 }}</p>
-    <a href="/recipe/{{recipe.id}}">View Recipe</a>
+
+    <a href="/recipe/{{ recipe.id }}/">View Recipe</a>
+
 </div>
+
+{% empty %}
+
+<p>No recipes available.</p>
 
 {% endfor %}
 

@@ -1,3 +1,5 @@
+console.log("JS is working!");
+
 const search = document.getElementById("search");
 
 search.addEventListener("keyup", function(){

@@ -4,6 +4,8 @@ from .models import Recipe
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Category
+
 
 # Create your views here.
 
@@ -38,3 +40,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def categories(request):
+    categories = Category.objects.all()
+    return render(request, "categories.html", {"categories": categories})
