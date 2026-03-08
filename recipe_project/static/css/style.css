@@ -55,3 +55,38 @@ padding:20px;
 background:#333;
 color:white;
 }
+
+.signup-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+.signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background: #45a049;
+}
+
+.google-btn {
+    display: inline-block;
+    padding: 12px;
+    background: #db4437;
+    color: white;
+    text-decoration: none;
+}

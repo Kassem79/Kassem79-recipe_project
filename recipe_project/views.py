@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import Recipe, Category
+from django.contrib.auth.forms import UserCreationForm
 
 # Home page view
 def home(request):
@@ -51,3 +52,18 @@ def logout_view(request):
 def categories(request):
     categories = Category.objects.all()
     return render(request, "categories.html", {"categories": categories})
+
+
+def signup_view(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)   # automatically log user in
+            return redirect('home')
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, "signup.html", {"form": form})
