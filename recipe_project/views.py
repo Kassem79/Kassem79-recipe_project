@@ -29,9 +29,9 @@ def recipe_list(request):
 
 # Recipe detail view
 
-def recipe_detail(request, id):
-    recipe = get_object_or_404(Recipe, id=id)
-    return render(request, 'recipe_detail.html', {'recipe': recipe})
+def recipe_detail(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    return render(request, 'recipes/recipe_detail.html', {'recipe': recipe})
 
 # Login view
 def login_view(request):

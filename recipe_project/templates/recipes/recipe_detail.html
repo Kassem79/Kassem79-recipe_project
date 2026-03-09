@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="recipe-detail">
+    <h1>{{ recipe.title }}</h1>
+    
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 500px; height: auto;">
+    
+    {% endif %}
+
+    <p><strong>Category:</strong>
+        {% if recipe.category %}
+            {{ recipe.category.name }}
+        {% else %}
+            Uncategorized
+        {% endif %}
+    </p>
+
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    
+    <h3>Ingredients</h3>
+    <p>{{ recipe.ingredients|linebreaks }}</p>
+    
+    <h3>Instructions</h3>
+    <p>{{ recipe.instructions|linebreaks }}</p>
+    
+    <p><small>Created on: {{ recipe.created_at|date:"F j, Y, g:i a" }}</small></p>
+
+    <a href="{% url 'recipe_update' recipe.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'recipe_delete' recipe.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'recipe_list' %}" class="btn btn-secondary">Back to Recipes</a>
+</div>
+{% endblock %}
