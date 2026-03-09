@@ -3,6 +3,8 @@
 {% block content %}
 
 <h1>All Recipes</h1>
+<a href="{% url 'recipe_create' %}" class="btn btn-primary">Add New Recipe</a>
+
 
 <div class="recipe-grid">
 
@@ -16,7 +18,9 @@
 
     <h3>{{ recipe.title }}</h3>
 
-    <a href="/recipe/{{ recipe.id }}/">View</a>
+    <a href="{% url 'recipe_detail' recipe.pk %}">View</a>
+    <a href="{% url 'recipe_update' recipe.pk %}">Edit</a>
+    <a href="{% url 'recipe_delete' recipe.pk %}">Delete</a>
 
 </div>
 

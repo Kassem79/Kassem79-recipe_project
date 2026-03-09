@@ -30,6 +30,8 @@ padding:10px;
 width:300px;
 }
 
+/* Recipe grid */
+
 .recipe-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -42,12 +44,35 @@ background:white;
 padding:15px;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
+border:1px solid #ddd;
 }
 
 .recipe-card img{
 width:100%;
 border-radius:10px;
 }
+
+.recipe-card h3{
+margin:10px 0;
+}
+
+/* Buttons */
+
+.recipe-card a{
+display:inline-block;
+padding:6px 12px;
+background:#ff7043;
+color:white;
+text-decoration:none;
+border-radius:5px;
+margin-top:5px;
+}
+
+.recipe-card a:hover{
+background:#f4511e;
+}
+
+/* Footer */
 
 footer{
 text-align:center;
@@ -56,37 +81,39 @@ background:#333;
 color:white;
 }
 
-.signup-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 30px;
-    text-align: center;
+/* Signup */
+
+.signup-container{
+max-width:400px;
+margin:auto;
+padding:30px;
+text-align:center;
 }
 
-.signup-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
+.signup-form input{
+width:100%;
+padding:10px;
+margin:8px 0;
 }
 
-.signup-btn {
-    width: 100%;
-    padding: 12px;
-    background: #4CAF50;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+.signup-btn{
+width:100%;
+padding:12px;
+background:#4CAF50;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 
-.signup-btn:hover {
-    background: #45a049;
+.signup-btn:hover{
+background:#45a049;
 }
 
-.google-btn {
-    display: inline-block;
-    padding: 12px;
-    background: #db4437;
-    color: white;
-    text-decoration: none;
+.google-btn{
+display:inline-block;
+padding:12px;
+background:#db4437;
+color:white;
+text-decoration:none;
 }

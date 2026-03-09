@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
-from .models import Recipe, Category
 from django.contrib.auth.forms import UserCreationForm
+from .models import Recipe, Category
+from .forms import RecipeForm
 
 # Home page view
 def home(request):
@@ -21,13 +22,15 @@ def home(request):
     return render(request, 'home.html', context)
 
 # Recipe list view
+
 def recipe_list(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipes.html', {'recipes': recipes})
 
 # Recipe detail view
+
 def recipe_detail(request, id):
-    recipe = Recipe.objects.get(id=id)
+    recipe = get_object_or_404(Recipe, id=id)
     return render(request, 'recipe_detail.html', {'recipe': recipe})
 
 # Login view
@@ -67,3 +70,40 @@ def signup_view(request):
         form = UserCreationForm()
 
     return render(request, "signup.html", {"form": form})
+
+
+def recipe_create(request):
+    if request.method == "POST":
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_list')
+    else:
+        form = RecipeForm()
+
+    return render(request, 'recipes/recipe_form.html', {'form': form})
+
+
+def recipe_delete(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+
+    if request.method == "POST":
+        recipe.delete()
+        return redirect('recipe_list')
+
+    return render(request, 'recipes/recipe_confirm_delete.html', {'recipe': recipe})
+
+
+
+def recipe_update(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+
+    if request.method == "POST":
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_list')
+    else:
+        form = RecipeForm(instance=recipe)
+
+    return render(request, 'recipes/recipe_form.html', {'form': form})
