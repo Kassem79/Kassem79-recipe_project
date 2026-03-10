@@ -30,48 +30,47 @@
 </section>
 
 <!-- Categories Section -->
-<section class="categories">
-    <h2>Recipe Categories</h2>
-    <div class="category-lists">
+<!--<section class="categories" -->
+    <!--<h2>Recipe Categories</h2> -->
+   <!-- <div class="category-lists">-->
 
         <!-- Breakfast -->
-        <div class="category-list">
-            <h3>Breakfast</h3>
-            <div class="recipe-grid">
-                {% for recipe in breakfast_recipes|slice:":3" %}
-                <div class="recipe-card">
-                    {% if recipe.image %}
-                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                    {% endif %}
-                    <h4>{{ recipe.title }}</h4>
-                    <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                </div>
-                {% empty %}
-                <p>No breakfast recipes yet.</p>
-                {% endfor %}
-            </div>
-        </div>
-
+        <!--<div class="category-list">-->
+            <!--<h3>Breakfast</h3>-->
+            <!--<div class="recipe-grid">-->
+               <!-- {% for recipe in breakfast_recipes|slice:":3" %}-->
+                <!--<div class="recipe-card">-->
+                    <!--{% if recipe.image %}-->
+                       <!-- <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">-->
+                    <!--{% endif %}-->
+                    <!--<h4>{{ recipe.title }}</h4>-->
+                    <!--<a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>-->
+                <!--</div>-->
+                <!--{% empty %}-->
+                <!--<p>No breakfast recipes yet.</p>-->
+                <!--{% endfor %}-->
+            <!--</div>-->
+        <!--</div>-->
         <!-- Lunch -->
-        <div class="category-list">
-            <h3>Lunch</h3>
-            <div class="recipe-grid">
-                {% for recipe in lunch_recipes|slice:":3" %}
-                <div class="recipe-card">
-                    {% if recipe.image %}
-                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-                    {% endif %}
-                    <h4>{{ recipe.title }}</h4>
-                    <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
-                </div>
-                {% empty %}
-                <p>No lunch recipes yet.</p>
-                {% endfor %}
-            </div>
-        </div>
+        <!--<div class="category-list">-->
+            <!--<h3>Lunch</h3>-->
+            <!--<div class="recipe-grid">-->
+                <!--{% for recipe in lunch_recipes|slice:":3" %}-->
+                <!--<div class="recipe-card">-->
+                    <!--{% if recipe.image %}-->
+                       <!-- <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">-->
+                   <!-- {% endif %}-->
+                    <!--<h4>{{ recipe.title }}</h4>-->
+                   <!-- <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>-->
+                <!--</div>-->
+               <!-- {% empty %}-->
+               <!-- <p>No lunch recipes yet.</p>-->
+                <!--{% endfor %}-->
+           <!-- </div>-->
+        <!--</div>-->
 
         <!-- Dinner -->
-        <div class="category-list">
+       <!--<div class="category-list">
             <h3>Dinner</h3>
             <div class="recipe-grid">
                 {% for recipe in dinner_recipes|slice:":3" %}
@@ -86,10 +85,10 @@
                 <p>No dinner recipes yet.</p>
                 {% endfor %}
             </div>
-        </div>
+        </div>--> 
 
         <!-- Desserts -->
-        <div class="category-list">
+       <!--<div class="category-list">
             <h3>Desserts</h3>
             <div class="recipe-grid">
                 {% for recipe in dessert_recipes|slice:":3" %}
@@ -107,7 +106,7 @@
         </div>
 
     </div>
-</section>
+</section>-->
 
 {% endblock %}
 
@@ -125,12 +124,21 @@
     </div>
 
     <div class="footer-social">
-        <h3>Follow Us</h3>
-        <a href="class="fa fa-facebook aria-hidden="true"></i>" target="_blank">Facebook</a> |
-        <a href="class="fa fa-instagram aria-hidden="true"></i>" target="_blank">Instagram</a> |
-        <a href="class="fa fa-twitter aria-hidden="true"></i>" target="_blank">Twitter</a> |
-    </div>
+    <h3>Follow Us</h3>
 
-    <p class="footer-copy">&copy; 2026 Recipe Project. All rights reserved.</p>
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook"></i> Facebook
+    </a> |
+
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i> Instagram
+    </a> |
+
+    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-twitter"></i> Twitter
+    </a>
+</div>
+
+    <p class="footer-copy">&copy; 2026 Recipe Project. Sherif Kassem | All rights reserved.</p>
 </footer>
 {% endblock %}
