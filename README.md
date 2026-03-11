@@ -149,6 +149,42 @@ Website is publicly accessible.
 
 Security settings are configured.
 
+## Keys views
+
+Home Page (home)
+
+Displays recipes categorized by meals (Hot Dishes, Salads, Desserts).
+
+Recipe List (recipe_list)
+
+Shows all recipes in one page.
+
+Recipe Detail (recipe_detail)
+
+Shows full details of a selected recipe.
+
+Category List (category_list)
+
+Displays all categories and recipes filtered by category.
+
+Buttons allow filtering recipes dynamically.
+
+CRUD Views
+
+recipe_create – Add new recipe.
+
+recipe_update – Edit existing recipe.
+
+recipe_delete – Delete a recipe.
+
+Authentication
+
+login_view – User login.
+
+logout_view – User logout.
+
+signup_view – User signup.
+
 
 ## Wireframe Layout (Recipe Website)
 
@@ -193,3 +229,21 @@ recipe_project/
 ├── static/
 │     css/style.css
 │     js/script.js
+
+
+
+## HTML templates define what users see:
+
+base.html – main layout, includes header, nav, footer.
+
+home.html – shows featured recipes.
+
+recipes.html – lists all recipes.
+
+categories.html – shows categories with buttons to filter recipes.
+
+recipe_detail.html – detailed view of one recipe.
+
+recipe_form.html – form for creating/updating a recipe.
+
+recipe_confirm_delete.html – confirms deletion.

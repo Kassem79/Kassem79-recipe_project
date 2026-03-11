@@ -4,17 +4,66 @@
 
 <h1>Recipe Categories</h1>
 
-
-<div class="category-list">
-
-{% for category in categories %}
-
-<div class="category-card">
-    <h3>{{ category.name }}</h3>
+<!-- Category Buttons -->
+<div style="margin-bottom: 20px;">
+    <button onclick="showCategory('Hot Dishes')">Hot Dishes</button>
+    <button onclick="showCategory('Salads')">Salads</button>
+    <button onclick="showCategory('Desserts')">Desserts</button>
 </div>
 
-{% endfor %}
+<!-- Hot Dishes -->
+<div id="Hot Dishes" class="category-section" style="display:none;">
+    <h2>Hot Dishes</h2>
+
+    {% for recipe in recipes %}
+        {% if recipe.category.name == "Hot Dishes" %}
+            <div class="recipe-card">
+                <h4>{{ recipe.title }}</h4>
+                <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
+            </div>
+        {% endif %}
+    {% endfor %}
 
 </div>
+
+<!-- Salads -->
+<div id="Salads" class="category-section" style="display:none;">
+    <h2>Salads</h2>
+
+    {% for recipe in recipes %}
+        {% if recipe.category.name == "Salads" %}
+            <div class="recipe-card">
+                <h4>{{ recipe.title }}</h4>
+                <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
+<!-- Desserts -->
+<div id="Desserts" class="category-section" style="display:none;">
+    <h2>Desserts</h2>
+
+    {% for recipe in recipes %}
+        {% if recipe.category.name == "Desserts" %}
+            <div class="recipe-card">
+                <h4>{{ recipe.title }}</h4>
+                <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
+<!-- JavaScript -->
+<script>
+function showCategory(category){
+    let sections = document.querySelectorAll(".category-section");
+    sections.forEach(section => section.style.display = "none");
+
+    document.getElementById(category).style.display = "block";
+}
+</script>
 
 {% endblock %}

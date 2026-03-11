@@ -52,9 +52,14 @@ def logout_view(request):
     return redirect('home')
 
 # Categories view
-def categories(request):
+def category_list(request):
     categories = Category.objects.all()
-    return render(request, "categories.html", {"categories": categories})
+    recipes = Recipe.objects.select_related('category').all()
+
+    return render(request, 'categories.html', {
+        'categories': categories,
+        'recipes': recipes
+    })
 
 
 def signup_view(request):

@@ -117,3 +117,20 @@ background:#db4437;
 color:white;
 text-decoration:none;
 }
+
+.recipe-card{
+    border:1px solid #ddd;
+    padding:10px;
+    margin:10px 0;
+    width:250px;
+}
+
+button{
+    padding:10px 15px;
+    margin-right:10px;
+    background:#ff7043;
+    border:none;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}

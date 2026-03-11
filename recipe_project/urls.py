@@ -13,8 +13,8 @@ urlpatterns = [
     path('update/<int:pk>/', views.recipe_update, name='recipe_update'),
     path('delete/<int:pk>/', views.recipe_delete, name='recipe_delete'),
 
-    # Categories
-    path('categories/', views.categories, name='categories'),
+    # Categories (fixed)
+    path('categories/', views.category_list, name='categories'),
 
     # Authentication
     path('login/', views.login_view, name='login'),
