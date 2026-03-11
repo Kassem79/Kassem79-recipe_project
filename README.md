@@ -247,3 +247,21 @@ recipe_detail.html – detailed view of one recipe.
 recipe_form.html – form for creating/updating a recipe.
 
 recipe_confirm_delete.html – confirms deletion.
+
+## Functionality Summary
+
+My project can:
+
+Show a home page with categorized recipes.
+
+List all recipes.
+
+Filter recipes by category using buttons.
+
+Display recipe details with ingredients, instructions, and images.
+
+Add, edit, delete recipes (CRUD).
+
+User authentication: signup, login, logout.
+
+Modern UI with hover effects, responsive grids, and placeholder images.
