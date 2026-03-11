@@ -6,7 +6,6 @@
     
     {% if recipe.image %}
         <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 500px; height: auto;">
-    
     {% endif %}
 
     <p><strong>Category:</strong>
@@ -21,6 +20,43 @@
     
     <h3>Ingredients</h3>
     <p>{{ recipe.ingredients|linebreaks }}</p>
+    
+    <h3>Comments</h3>
+    
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+    {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
+    {% endif %}
+
+    <div class="comments-list">
+        {% for comment in comments %}
+            <div class="comment-card">
+                <p>
+                    <strong>{{ comment.author.username }}</strong>
+                    <small>{{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+
+                    {% if comment.author == user and comment.pk %}
+                        <!-- Edit button -->
+                        <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-secondary">Edit</a>
+
+                        <!-- Delete button -->
+                        <form method="POST" action="{% url 'delete_comment' comment.pk %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    {% endif %}
+                </p>
+                <p>{{ comment.content|linebreaks }}</p>
+            </div>
+        {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </div>
     
     <h3>Instructions</h3>
     <p>{{ recipe.instructions|linebreaks }}</p>

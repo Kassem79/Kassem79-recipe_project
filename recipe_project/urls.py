@@ -12,6 +12,9 @@ urlpatterns = [
     path('create/', views.recipe_create, name='recipe_create'),
     path('update/<int:pk>/', views.recipe_update, name='recipe_update'),
     path('delete/<int:pk>/', views.recipe_delete, name='recipe_delete'),
+    # path('comment/edit/<int:pk>/', views.edit_comment, name='edit_comment'),
+    path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
+    path('comment/edit/<int:pk>/', views.edit_comment, name='edit_comment'),
 
     # Categories (fixed)
     path('categories/', views.category_list, name='categories'),
