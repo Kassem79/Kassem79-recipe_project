@@ -15,8 +15,8 @@ class Recipe(models.Model):
     description = models.TextField()
     ingredients = models.TextField()
     instructions = models.TextField()
-    image = models.ImageField(upload_to='recipes/')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)  # Optional for existing recipes
+    image = models.ImageField(upload_to='recipes/', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)  
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
