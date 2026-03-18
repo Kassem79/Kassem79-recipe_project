@@ -2,21 +2,22 @@ import os
 from pathlib import Path
 import dj_database_url
 
-# Base directory
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load local env.py if exists (for development only)
+
 if os.path.isfile(BASE_DIR / "env.py"):
-    import env  # noqa: F401
+    import env  
 
-# SECRET_KEY from environment or fallback (development)
-SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-for-local")
 
-# DEBUG mode should be False in production
-DEBUG = "DEVELOPMENT" in os.environ
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# Hosts
+
+DEBUG = False
+
+# Allowed hosts
 ALLOWED_HOSTS = [
+    "kassemrecipeproject-fae6a513e4f4.herokuapp.com",
     ".herokuapp.com",
     "127.0.0.1",
     "localhost",
@@ -71,16 +72,14 @@ TEMPLATES = [
     },
 ]
 
-# WSGI
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 DATABASES = {
     "default": dj_database_url.parse(
-        os.environ.get(
-            "DATABASE_URL",
-            f"sqlite:///{BASE_DIR / 'db.sqlite3'}"  # fallback to local sqlite
-        )
+        os.environ.get("DATABASE_URL", f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        conn_max_age=600,
+        ssl_require=True,  # Heroku PostgreSQL requires SSL
     )
 }
 
@@ -100,8 +99,8 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]  # local static folder
+STATIC_ROOT = BASE_DIR / "staticfiles"   # Heroku collects static here
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_USE_FINDERS = True
 
