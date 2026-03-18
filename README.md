@@ -209,7 +209,26 @@ signup_view – User signup.
 
 ## Django Project Structure
 
-
+recipe_project/
+│
+├── recipe_project/
+│     settings.py
+│     urls.py
+│
+├── recipes/
+│     models.py
+│     views.py
+│     urls.py
+│
+├── templates/
+│     base.html
+│     home.html
+│     recipes.html
+│     recipe_detail.html
+│
+├── static/
+│     css/style.css
+│     js/script.js
 
 
 
