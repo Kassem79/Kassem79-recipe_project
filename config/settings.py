@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'recipe_project',
+    'kassemrecipeproject-fae6a513e4f4.herokuapp.com',
 ]
 
 
