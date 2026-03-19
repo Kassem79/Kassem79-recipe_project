@@ -5,24 +5,27 @@
 <h1>All Recipes</h1>
 <a href="{% url 'recipe_create' %}" class="btn btn-primary">Create New Recipe</a>
 
-
 <div class="recipe-grid">
 
 {% for recipe in recipes %}
 
 <div class="recipe-card">
 
-    {% if recipe.image %}
+    {% if recipe.image and recipe.image.name %}
         <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
     {% endif %}
 
-    <h3>{{ recipe.title }}</h3>
+    <a href="{% url 'recipe_detail' recipe.pk %}">
+        <h3>{{ recipe.title }}</h3>
+    </a>
 
-    <a href="{% url 'recipe_detail' recipe.pk %}">View</a>
-    <a href="{% url 'recipe_update' recipe.pk %}">Edit</a>
-    <a href="{% url 'recipe_delete' recipe.pk %}">Delete</a>
-    <a href="{% url 'recipe_detail' recipe.pk %}">Update</a>
+    <a href="{% url 'recipe_detail' recipe.pk %}" class="btn btn-info">View</a>
+    <a href="{% url 'recipe_update' recipe.pk %}" class="btn btn-warning">Edit</a>
 
+    <form action="{% url 'recipe_delete' recipe.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
 
 </div>
 
