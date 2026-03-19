@@ -11,10 +11,10 @@ if os.path.isfile(BASE_DIR / "env.py"):
     import env  
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "kassem79")  # fallback for dev
+SECRET_KEY = os.environ.get("SECRET_KEY") 
 
 
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", "False").lower() in ("true", "1", "yes")
 
 ALLOWED_HOSTS = [
     ".herokuapp.com",
@@ -122,16 +122,17 @@ CLOUDINARY_CLOUD_NAME = os.environ.get("CLOUDINARY_CLOUD_NAME")
 CLOUDINARY_API_KEY = os.environ.get("CLOUDINARY_API_KEY")
 CLOUDINARY_API_SECRET = os.environ.get("CLOUDINARY_API_SECRET")
 
-if CLOUDINARY_CLOUD_NAME and CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+if all([CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET]):
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': CLOUDINARY_CLOUD_NAME,
-        'API_KEY': CLOUDINARY_API_KEY,
-        'API_SECRET': CLOUDINARY_API_SECRET,
+        "CLOUD_NAME": CLOUDINARY_CLOUD_NAME,
+        "API_KEY": CLOUDINARY_API_KEY,
+        "API_SECRET": CLOUDINARY_API_SECRET,
     }
 else:
-    
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    # fallback to local storage if env vars are missing
+    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+    print("Cloudinary Config:", CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET)
 
 
 SITE_ID = 1
