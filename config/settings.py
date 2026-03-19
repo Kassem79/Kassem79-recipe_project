@@ -130,7 +130,7 @@ if all([CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET]):
         "API_SECRET": CLOUDINARY_API_SECRET,
     }
 else:
-    # fallback to local storage if env vars are missing
+    
     DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
     print("Cloudinary Config:", CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET)
 

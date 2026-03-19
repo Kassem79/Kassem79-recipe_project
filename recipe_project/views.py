@@ -7,7 +7,7 @@ from django.http import HttpResponseForbidden
 from .models import Recipe, Category, Comment
 from .forms import RecipeForm, CommentForm
 
-# Home page
+
 def home(request):
     recipes = Recipe.objects.all()
     context = {
@@ -19,12 +19,12 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-# Recipe list
+
 def recipe_list(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipes.html', {'recipes': recipes})
 
-# Recipe detail with comments
+
 def recipe_detail(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     comments = recipe.comments.all().order_by('-created_at')
@@ -49,7 +49,7 @@ def recipe_detail(request, pk):
         'form': form
     })
 
-# Login / Logout / Signup
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -76,7 +76,7 @@ def signup_view(request):
         form = UserCreationForm()
     return render(request, "signup.html", {"form": form})
 
-# Recipe CRUD
+
 def recipe_create(request):
     form = RecipeForm(request.POST or None, request.FILES or None)
     if request.method == "POST" and form.is_valid():
@@ -99,13 +99,13 @@ def recipe_delete(request, pk):
         return redirect('recipe_list')
     return render(request, 'recipes/recipe_confirm_delete.html', {'recipe': recipe})
 
-# Categories
+
 def category_list(request):
     categories = Category.objects.all()
     recipes = Recipe.objects.select_related('category').all()
     return render(request, 'categories.html', {'categories': categories, 'recipes': recipes})
 
-# Comments
+
 @login_required
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
@@ -126,7 +126,7 @@ def edit_comment(request, pk):
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
 
-    # Only the author can delete their comment
+    
     if comment.author != request.user:
         return HttpResponseForbidden("You are not allowed to delete this comment.")
 
@@ -134,5 +134,5 @@ def delete_comment(request, pk):
         comment.delete()
         return redirect('recipe_detail', pk=comment.recipe.pk)
 
-    # Redirect for GET request
+    
     return redirect('recipe_detail', pk=comment.recipe.pk)

@@ -191,7 +191,7 @@ signup_view – User signup.
 ## Pages Structure
 
 ------------------------------------------------
-| Logo | Home | Recipes | Categories | Login   |
+| Logo | Home | Recipes | Categories | Login Signup   |
 ------------------------------------------------
 |                Hero Section                  |
 |         "Discover Delicious Recipes"         |
@@ -201,7 +201,7 @@ signup_view – User signup.
 |  [Recipe Card] [Recipe Card] [Recipe Card]   |
 ------------------------------------------------
 | Categories                                   |
-| Breakfast | Lunch | Dinner | Desserts        |
+|  Hotdishes | Salads | Desserts                |
 ------------------------------------------------
 | Footer                                       |
 | About | Contact | Social Links               |
@@ -265,3 +265,109 @@ Add, edit, delete recipes (CRUD).
 User authentication: signup, login, logout.
 
 Modern UI with hover effects, responsive grids, and placeholder images.
+
+## 1. Core project setup
+
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+the root folder of the project.
+
+You use it to build paths (e.g., templates, static files).
+
+# if os.path.isfile(BASE_DIR / "env.py"):
+   # import env
+
+This loads environment variables from a local file (useful in development).
+
+Prevents hardcoding secrets into your code.
+
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+
+This is app’s cryptographic key.
+
+Used for sessions, passwords, CSRF protection.
+
+Must be kept secret in production.
+
+# DEBUG = False
+
+True → shows detailed error pages (development)
+
+False → hides sensitive info (production)
+
+# ALLOWED_HOSTS = [...]
+
+Controls which domains can access the app.
+
+Prevents Host header attacks.
+
+# Built-in Django apps
+
+admin → admin panel
+
+auth → users/login system
+
+sessions → login persistence
+
+messages → flash messages
+
+staticfiles → static file handling
+
+
+                     settings.py (Control Panel)
+                              │
+     ┌────────────────────────┼────────────────────────┐
+     │                        │                        │
+  Security                 Core Setup            Infrastructure
+     │                        │                        │
+ SECRET_KEY              BASE_DIR                 INSTALLED_APPS
+ DEBUG                   env.py                  MIDDLEWARE
+ ALLOWED_HOSTS                                   URLS / TEMPLATES
+ CSRF_TRUSTED_ORIGINS                             WSGI
+
+                              │
+                              │
+                        Data & Storage
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+   Database              Static Files         Media Files
+ (Postgres/SQLite)      (CSS, JS)           (Uploads)
+ dj_database_url        WhiteNoise          Cloudinary
+                        collectstatic       or local
+
+                              │
+                              │
+                        Authentication
+                              │
+                     allauth settings
+              LOGIN / LOGOUT redirects
+                     SITE_ID
+
+                              │
+                              │
+                         Global Settings
+                              │
+              LANGUAGE_CODE = en-us
+              TIME_ZONE = UTC
+              USE_TZ = True
+
+                              │
+                              │
+                         Password Rules
+                              │
+              Length / Common / Numeric checks
+
+1. Security → SECRET_KEY, Cloudenary, DEBUG
+2. Apps → INSTALLED_APPS
+3. Flow → MIDDLEWARE
+4. Routing → URLS, TEMPLATES
+5. Data → DATABASES
+6. Files → STATIC + MEDIA
+7. Auth → LOGIN / allauth
+8. Global → TIMEZONE, LANGUAGE
+
+
+
+
+
